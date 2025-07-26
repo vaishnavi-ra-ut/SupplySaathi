@@ -9,23 +9,72 @@ import AuthPage from "./pages/AuthPage";
 import Navbar from './pages/Navbar';
 import Trips from './components/Trips';
 import Dashboard from './pages/Dashboard';
+import RequireAuth from "./components/RequireAuth";
 
 export default function App() {
+  const token = localStorage.getItem("token");
+
   return (
     <>
-      <Navbar />
+      {/* Show Navbar & Footer only if logged in */}
+      {token && <Navbar />}
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/clusters" element={<Clusters />} />
-        <Route path="/supplier" element={<Supplier />} />
-         <Route path="/auth" element={<AuthPage />} />
-         <Route path="/trips" element={<Trips />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* Public Route */}
+        <Route path="/auth" element={<AuthPage />} />
+
+        {/* Protected Routes */}
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Home />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/clusters"
+          element={
+            <RequireAuth>
+              <Clusters />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/supplier"
+          element={
+            <RequireAuth>
+              <Supplier />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/trips"
+          element={
+            <RequireAuth>
+              <Trips />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        />
       </Routes>
 
-      <Footer />
+      {token && <Footer />}
     </>
   );
 }

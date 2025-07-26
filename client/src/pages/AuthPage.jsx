@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/api";
+import { useDispatch } from "react-redux";
+import { setUser } from "../utils/userSlice";
 
 const AuthPage = () => {
   const [step, setStep] = useState("phone");
@@ -13,8 +15,16 @@ const AuthPage = () => {
   const [devOtp, setDevOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    navigate("/");
+  }
+}, []);
 
   const checkUserAndSendOtp = async () => {
     if (!phone || phone.length !== 10)
@@ -34,6 +44,7 @@ const AuthPage = () => {
     }
     setLoading(false);
   };
+  
 
   const handleVerify = async () => {
     if (!otp) return setMessage("Enter the OTP sent to your phone.");
@@ -52,6 +63,7 @@ const AuthPage = () => {
       if (userRole === "supplier") navigate("/dashboard");
       else if (userRole === "buyer") navigate("/");
       else setMessage("Unknown user role. Please contact support.");
+      dispatch(setUser(res.data.user));
     } catch {
       setMessage("Invalid OTP or failed login.");
     }
