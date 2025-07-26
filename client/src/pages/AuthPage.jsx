@@ -1,9 +1,6 @@
 import { useState } from "react";
-import api from "../utils/api";
-import OTPForm from "../components/OTPForm";
-import PhoneInputForm from "../components/PhoneInputForm";
-import NewUserDetailsForm from "../components/NewUserDetailsForm";
 import { useNavigate } from "react-router-dom";
+import api from "../utils/api";
 
 const AuthPage = () => {
   const [step, setStep] = useState("phone");
@@ -38,11 +35,6 @@ const AuthPage = () => {
     setLoading(false);
   };
 
-  const resendOtp = () => {
-    checkUserAndSendOtp();
-    setMessage("OTP resent");
-  };
-
   const handleVerify = async () => {
     if (!otp) return setMessage("Enter the OTP sent to your phone.");
     setLoading(true);
@@ -67,49 +59,123 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-orange-50 px-4">
-      <div className="bg-white shadow-xl rounded-xl p-6 w-full max-w-md border border-orange-100">
-        <h1 className="text-3xl font-bold text-orange-600 mb-2 text-center">
-          🛒 SupplySaathi
-        </h1>
-        <p className="text-sm text-gray-600 mb-4 text-center">
-          साथ खरीदो, सस्ता पाओ — Sign in to join clusters and get best prices!
-        </p>
-
-        {message && (
-          <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-3 rounded-md text-sm mb-4">
-            {message}{" "}
-            {devOtp && <span className="font-mono">Dev OTP: {devOtp}</span>}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-white px-4">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
+        {/* Logo & Title */}
+        <div className="flex flex-col items-center mb-6">
+          <div className="flex items-center gap-2 text-2xl font-bold text-orange-600">
+            Welcome 
           </div>
+          <p className="text-sm text-gray-600 text-center mt-1">
+            आपका स्वागत है !
+            
+          </p>
+          <span className="text-gray-800 font-medium">
+              Sign in to join clusters and get best prices!
+            </span>
+        </div>
+
+        {/* Flash Message */}
+        {message && (
+          <div className="mb-3 text-center text-sm text-red-500">{message}</div>
         )}
 
-        {step === "phone" ? (
-          <PhoneInputForm
-            phone={phone}
-            setPhone={setPhone}
-            loading={loading}
-            checkUserAndSendOtp={checkUserAndSendOtp}
-          />
-        ) : (
+        {/* Phone Input Step */}
+        {step === "phone" && (
           <>
-            {!isExistingUser && (
-              <NewUserDetailsForm
-                fullName={fullName}
-                setFullName={setFullName}
-                language={language}
-                setLanguage={setLanguage}
-                role={role}
-                setRole={setRole}
+            <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-1">
+              📱 Mobile Number
+            </label>
+            <div className="flex items-center border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-orange-500 mb-4">
+              <span className="text-gray-600 text-sm mr-2">+91</span>
+              <input
+                type="tel"
+                maxLength={10}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Enter 10-digit number"
+                className="w-full outline-none text-sm text-gray-800 placeholder-gray-400"
               />
-            )}
-            <OTPForm
-              otp={otp}
-              setOtp={setOtp}
-              loading={loading}
-              onVerify={handleVerify}
-              onResend={resendOtp}
-              autoSubmit={true}
+            </div>
+            <button
+              onClick={checkUserAndSendOtp}
+              disabled={loading}
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition shadow-md"
+            >
+              {loading ? "Sending OTP..." : "Request OTP"}
+            </button>
+          </>
+        )}
+
+        {/* OTP Step */}
+        {step === "otp" && (
+          <>
+            <label className="block text-sm font-medium text-gray-700 mb-1 mt-4">
+              🔐 Enter OTP
+            </label>
+            <input
+              type="text"
+              maxLength={6}
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              placeholder="6-digit OTP"
+              className="w-full border rounded-lg px-3 py-2 mb-4 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
+
+            {/* New user details form */}
+            {!isExistingUser && (
+              <>
+                <label className="block text-sm font-medium text-gray-700 mb-1">👤 Full Name</label>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full border rounded-lg px-3 py-2 mb-3 text-sm"
+                />
+
+                <label className="block text-sm font-medium text-gray-700 mb-1">🗣️ Language</label>
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  className="w-full border rounded-lg px-3 py-2 mb-3 text-sm"
+                >
+                  <option>Hindi</option>
+                  <option>English</option>
+                </select>
+
+                <label className="block text-sm font-medium text-gray-700 mb-1">🎯 Role</label>
+                <select
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  className="w-full border rounded-lg px-3 py-2 mb-4 text-sm"
+                >
+                  <option value="buyer">Buyer</option>
+                  <option value="supplier">Supplier</option>
+                </select>
+              </>
+            )}
+
+            <button
+              onClick={handleVerify}
+              disabled={loading}
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition shadow-md"
+            >
+              {loading ? "Verifying..." : "Verify & Continue"}
+            </button>
+
+            <button
+              onClick={checkUserAndSendOtp}
+              className="mt-3 w-full text-sm text-orange-600 underline"
+            >
+              Resend OTP
+            </button>
+
+            {/* Dev OTP */}
+            {devOtp && (
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                Dev OTP: <span className="font-mono">{devOtp}</span>
+              </p>
+            )}
           </>
         )}
       </div>

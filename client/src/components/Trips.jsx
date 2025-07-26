@@ -2,8 +2,8 @@
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import upcomingTrips from '../utils/upcomingTrips'
-import { pastTrips } from './../utils/pastTrips';
+import upcomingTrips from '../utils/upcomingTrips';
+import { pastTrips } from '../utils/pastTrips';
 
 export default function Trips() {
   const [activeTab, setActiveTab] = useState('upcoming');
@@ -37,71 +37,6 @@ export default function Trips() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
-      {/* Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t-2 border-orange-200 z-50 md:hidden">
-        <div className="flex justify-around items-center py-3">
-          <Link href="/" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-home-fill text-2xl text-gray-500"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Home</span>
-          </Link>
-          <Link href="/clusters" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-group-fill text-2xl text-gray-500"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Clusters</span>
-          </Link>
-          <Link href="/suppliers" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-store-2-fill text-2xl text-gray-500"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Suppliers</span>
-          </Link>
-          <Link href="/profile" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-user-fill text-2xl text-gray-500"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Profile</span>
-          </Link>
-        </div>
-      </nav>
-
-      {/* Desktop Top Navigation */}
-      <nav className="hidden md:flex bg-white shadow-sm border-b-2 border-orange-200 px-8 py-4">
-        <div className="flex items-center space-x-8">
-          <Link href="/" className="text-2xl font-bold text-orange-600" style={{ fontFamily: 'Pacifico, serif' }}>
-            SupplySathi
-          </Link>
-          <div className="flex space-x-6">
-            <Link href="/" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-home-fill text-xl"></i>
-              </div>
-              <span className="font-medium">Home</span>
-            </Link>
-            <Link href="/clusters" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-group-fill text-xl"></i>
-              </div>
-              <span className="font-medium">My Clusters</span>
-            </Link>
-            <Link href="/suppliers" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-store-2-fill text-xl"></i>
-              </div>
-              <span className="font-medium">Suppliers</span>
-            </Link>
-            <Link href="/profile" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-user-fill text-xl"></i>
-              </div>
-              <span className="font-medium">Profile</span>
-            </Link>
-          </div>
-        </div>
-      </nav>
-
       {/* Main Content */}
       <div className="pt-4 md:pt-8 pb-24 md:pb-8">
         {/* Header */}

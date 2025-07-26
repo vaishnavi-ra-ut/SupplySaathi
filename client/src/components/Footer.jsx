@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Logo & Tagline */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-9 h-9 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center">
                 <Utensils className="text-white w-5 h-5" />
               </div>
               <div>
@@ -22,9 +22,9 @@ export default function Footer() {
                   className="text-xl font-bold text-orange-400"
                   style={{ fontFamily: 'var(--font-pacifico)' }}
                 >
-                  ReadyRasoi
+                  Supply Saathi
                 </h2>
-                <p className="text-xs text-gray-400">Aapka Rasoi Partner</p>
+                <p className="text-xs text-gray-400 mt-1">साथ खरीदो, सस्ता पाओ</p>
               </div>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
@@ -78,11 +78,11 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <Phone className="text-orange-400 w-4 h-4" />
-              <span className="text-gray-300">+91 9876543210</span>
+              <span className="text-gray-300">+91 98765XXXXX</span>
             </div>
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <Mail className="text-orange-400 w-4 h-4" />
-              <span className="text-gray-300">support@readyrasoi.com</span>
+              <span className="text-gray-300">support@SupplySaathi.com</span>
             </div>
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <Clock className="text-orange-400 w-4 h-4" />
@@ -94,7 +94,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-6 text-center">
           <p className="text-gray-400 text-sm">
-            © 2024 ReadyRasoi. All rights reserved. | Aapka Rasoi Partner 🍽️
+            © 2024 SupplySaathi. All rights reserved. | साथ खरीदो, सस्ता पाओ 🍽️
           </p>
         </div>
       </div>
