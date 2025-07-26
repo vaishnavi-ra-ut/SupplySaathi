@@ -1,6 +1,7 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
+
 import {
   Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube, Utensils
 } from 'lucide-react';

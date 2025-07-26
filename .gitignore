@@ -1,7 +1,23 @@
-# Node
+# 🔒 Global node modules and environment files
 node_modules/
 .env
 
-# React
-client/node_modules
+# 🔒 React (client)
+client/node_modules/
 client/.env
+client/dist/
+client/.vite/
+
+# 🔒 Express (server)
+server/node_modules/
+server/.env
+
+# 🔒 OS/Editor specific
+.DS_Store
+*.log
+*.swp
+*.swo
+*.tmp
+
+# 🔒 VSCode
+.vscode/

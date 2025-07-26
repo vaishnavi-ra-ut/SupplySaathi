@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import suppliers from '../utils/suppliersData'
+import { suppliers } from '../utils/suppliersData';
 
 export default function Suppliers() {
   const [hoveredSupplier, setHoveredSupplier] = useState(null);
