@@ -1,21 +1,20 @@
-import mongoose from 'mongoose';
+// models/Cluster.js
+const mongoose = require("mongoose");
 
 const clusterSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    marketLocation: { type: String, required: true },
-    location: {
-        type: { type: String, enum: ['Point'], default: 'Point' },
-        coordinates: { type: [Number], required: true }, // [lng, lat]
-    },
-    vendorsGoing: { type: Number, default: 0 },
-    status: { type: String, enum: ['active', 'joining', 'planning'], default: 'joining' },
-    meetingTime: { type: String, required: true }, // e.g. 'Friday 10 AM'
-    icon: { type: String },
-    description: String,
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    joinedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  name: { type: String, required: true },
+  city: { type: String, required: true },
+  area: { type: String, required: true },
+  meetingDay: { type: String, required: true },
+  meetingTime: { type: String, required: true },
+
+  coordinates: {
+    type: { type: String, enum: ["Point"], default: "Point" },
+    coordinates: { type: [Number], required: true }, // [lng, lat]
+  },
 }, { timestamps: true });
 
-clusterSchema.index({ location: '2dsphere' }); // For geospatial queries
+// ✅ 2dsphere index for geo queries
+clusterSchema.index({ coordinates: "2dsphere" });
 
-export default mongoose.model('Cluster', clusterSchema);
+module.exports = mongoose.model("Cluster", clusterSchema);
