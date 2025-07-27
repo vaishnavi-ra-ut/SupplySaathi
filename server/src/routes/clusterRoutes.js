@@ -1,17 +1,17 @@
-import express from 'express';
-import {
-    createCluster,
-    getAllClusters,
-    getNearbyClusters,
-    joinCluster
-} from '../controllers/clusterController.js';
-import { authenticateUser } from '../middleware/authMiddleware.js'; // If using auth
+const express = require("express");
+const {
+  createCluster,
+  getAllClusters,
+  getNearbyClusters,
+  joinCluster,
+} = require("../controllers/clusterController");
+const authenticateUser = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post('/', authenticateUser, createCluster);
-router.get('/', getAllClusters);
-router.get('/nearby', getNearbyClusters);
-router.post('/:id/join', authenticateUser, joinCluster);
+router.post("/create", authenticateUser, createCluster);
+router.get("/", getAllClusters);
+router.get("/nearby", getNearbyClusters);
+router.post("/:id/join", authenticateUser, joinCluster);
 
-export default router;
+module.exports = router;
