@@ -11,7 +11,7 @@ const supplierRoutes = require('./routes/supplierRoutes');
 
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: ['https://supplysaathi-5.onrender.com'],
   credentials: true
 }));
 app.use(express.json());
