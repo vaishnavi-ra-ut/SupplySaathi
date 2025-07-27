@@ -11,7 +11,5 @@
     color: #1f2937;
   }
   
-  * {
-    @apply scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100;
-  }
+  
 }
