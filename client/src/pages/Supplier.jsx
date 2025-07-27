@@ -1,19 +1,21 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { suppliers } from '../utils/suppliersData';
+import{Store, Grid, Leaf, Apple, Flame, Wheat, Milk, Phone, Heart, UserCheck, Truck, Check, UserRoundPlus} from 'lucide-react'
 
-export default function Suppliers() {
+export default function Supplier() {
   const [hoveredSupplier, setHoveredSupplier] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const categories = [
-    { id: 'all', name: 'All', icon: 'ri-grid-fill' },
-    { id: 'vegetables', name: 'Vegetables', icon: 'ri-leaf-fill' },
-    { id: 'fruits', name: 'Fruits', icon: 'ri-apple-fill' },
-    { id: 'spices', name: 'Spices', icon: 'ri-fire-fill' },
-    { id: 'grains', name: 'Grains', icon: 'ri-plant-fill' },
-    { id: 'dairy', name: 'Dairy', icon: 'ri-drop-fill' }
-  ];
+const categories = [
+  { id: 'all', name: 'All', icon: Grid },
+  { id: 'vegetables', name: 'Vegetables', icon: Leaf },
+  { id: 'fruits', name: 'Fruits', icon: Apple },
+  { id: 'spices', name: 'Spices', icon: Flame },
+  { id: 'grains', name: 'Grains', icon: Wheat },
+  { id: 'dairy', name: 'Dairy', icon: Milk }
+];
+
 
   const filteredSuppliers = selectedCategory === 'all' 
     ? suppliers 
@@ -47,79 +49,15 @@ export default function Suppliers() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
-      {/* Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t-2 border-orange-200 z-50 md:hidden">
-        <div className="flex justify-around items-center py-3">
-          <Link href="/" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-home-fill text-2xl text-gray-500"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Home</span>
-          </Link>
-          <Link href="/clusters" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-group-fill text-2xl text-gray-500"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Clusters</span>
-          </Link>
-          <Link href="/suppliers" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-store-2-fill text-2xl text-orange-600"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Suppliers</span>
-          </Link>
-          <Link href="/profile" className="flex flex-col items-center p-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <i className="ri-user-fill text-2xl text-gray-500"></i>
-            </div>
-            <span className="text-xs text-gray-600 mt-1">Profile</span>
-          </Link>
-        </div>
-      </nav>
-
-      {/* Desktop Top Navigation */}
-      <nav className="hidden md:flex bg-white shadow-sm border-b-2 border-orange-200 px-8 py-4">
-        <div className="flex items-center space-x-8">
-          <Link href="/" className="text-2xl font-bold text-orange-600" style={{ fontFamily: 'Pacifico, serif' }}>
-            SupplySathi
-          </Link>
-          <div className="flex space-x-6">
-            <Link href="/" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-home-fill text-xl"></i>
-              </div>
-              <span className="font-medium">Home</span>
-            </Link>
-            <Link href="/clusters" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-group-fill text-xl"></i>
-              </div>
-              <span className="font-medium">My Clusters</span>
-            </Link>
-            <Link href="/suppliers" className="flex items-center space-x-2 px-4 py-2 text-orange-600 bg-orange-50 rounded-full">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-store-2-fill text-xl"></i>
-              </div>
-              <span className="font-medium">Suppliers</span>
-            </Link>
-            <Link href="/profile" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <i className="ri-user-fill text-xl"></i>
-              </div>
-              <span className="font-medium">Profile</span>
-            </Link>
-          </div>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50 mt-14">
+     
       {/* Main Content */}
       <div className="pt-4 md:pt-8 pb-24 md:pb-8">
         {/* Header */}
         <div className="mx-4 md:mx-8 mb-6">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            <div className="w-8 h-8 inline-block mr-3 bg-blue-100 rounded-full align-middle">
-              <i className="ri-store-2-fill text-2xl text-blue-600 flex items-center justify-center h-full"></i>
+            <div className="w-9 h-9 inline-block mr-3 bg-blue-100 rounded-full align-middle">
+              <Store className="text-2xl text-blue-600 flex items-center justify-center h-full ml-1.5"/>
             </div>
             Trusted Suppliers
           </h1>
@@ -140,7 +78,7 @@ export default function Suppliers() {
                 }`}
               >
                 <div className="w-5 h-5 mr-2 flex items-center justify-center">
-                  <i className={`${category.icon} text-lg`}></i>
+                  <category.icon className="w-5 h-5" />
                 </div>
                 {category.name}
               </button>
@@ -168,20 +106,17 @@ export default function Suppliers() {
                     className="w-full h-full object-cover object-top"
                   />
                   {supplier.verified && (
-                    <div className="absolute top-3 right-3 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                      <div className="w-3 h-3 inline-block mr-1">
-                        <i className="ri-check-fill"></i>
-                      </div>
-                      Verified
-                    </div>
-                  )}
-                  {supplier.delivery && (
-                    <div className="absolute top-3 left-3 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                      <div className="w-3 h-3 inline-block mr-1">
-                        <i className="ri-truck-fill"></i>
-                      </div>
-                      Delivery
-                    </div>
+                    <div className="absolute top-3 right-3 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+    <Check className="w-4 h-4 mr-1" />
+    Verified
+  </div>
+)}
+
+{supplier.delivery && (
+  <div className="absolute top-3 left-3 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+    <Truck className="w-4 h-4 mr-1" />
+    Delivery
+  </div>
                   )}
                 </div>
 
@@ -199,16 +134,16 @@ export default function Suppliers() {
 
                   {/* Rating */}
                   <div className="flex items-center mb-3">
-                    <div className="flex items-center mr-2">
+                    <div className="flex items-center mr-1">
                       {renderStars(supplier.rating)}
                     </div>
-                    <span className="text-sm font-semibold text-gray-700">{supplier.rating}</span>
+                    <span className="text-sm font-semibold text-gray-700">★ {supplier.rating}</span>
                   </div>
 
                   {/* Trusted By */}
                   <div className="flex items-center mb-4">
                     <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-2">
-                      <i className="ri-shield-check-fill text-green-600"></i>
+                      <UserCheck className='text-green-600'/>
                     </div>
                     <span className="text-sm text-gray-600">Trusted by {supplier.trustedBy} vendors</span>
                   </div>
@@ -237,12 +172,12 @@ export default function Suppliers() {
                     </button>
                     <button className="px-4 py-3 bg-gray-100 text-gray-700 rounded-2xl hover:bg-gray-200 transition-colors">
                       <div className="w-5 h-5 flex items-center justify-center">
-                        <i className="ri-phone-fill"></i>
+                        <Phone/>
                       </div>
                     </button>
                     <button className="px-4 py-3 bg-gray-100 text-gray-700 rounded-2xl hover:bg-gray-200 transition-colors">
                       <div className="w-5 h-5 flex items-center justify-center">
-                        <i className="ri-heart-fill"></i>
+                        <Heart/>
                       </div>
                     </button>
                   </div>
@@ -261,8 +196,8 @@ export default function Suppliers() {
                 <p className="text-white opacity-90">Help the community by adding trusted suppliers</p>
               </div>
               <button className="bg-white text-blue-600 px-6 py-3 rounded-2xl font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap">
-                <div className="w-5 h-5 inline-block mr-2">
-                  <i className="ri-add-fill"></i>
+                <div className="w-5 h-4 inline-block mr-2">
+                  <UserRoundPlus/>
                 </div>
                 Add Supplier
               </button>

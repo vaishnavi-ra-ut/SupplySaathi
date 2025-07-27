@@ -1,9 +1,9 @@
 "use client";
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import upcomingTrips from "../utils/upcomingTrips";
-import { pastTrips } from "../utils/pastTrips";
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import upcomingTrips from '../utils/upcomingTrips';
+import { pastTrips } from '../utils/pastTrips';
 
 export default function Trips() {
   const [activeTab, setActiveTab] = useState("upcoming");
@@ -47,6 +47,7 @@ export default function Trips() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
+<<<<<<< HEAD:client/src/pages/Trips.jsx
       {/* Navigation */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t-2 border-orange-200 z-50 md:hidden">
         <div className="flex justify-around items-center py-3">
@@ -128,6 +129,8 @@ export default function Trips() {
         </div>
       </nav>
 
+=======
+>>>>>>> 6be633d03ff0d119ce95af22e1d688c476b09d9f:client/src/components/Trips.jsx
       {/* Main Content */}
       <div className="pt-4 md:pt-8 pb-24 md:pb-8">
         {/* Header */}

@@ -1,4 +1,6 @@
 import { useRef, useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { setUser } from '../utils/userSlice';
 
 const OTPForm = ({
   otp,
@@ -11,6 +13,7 @@ const OTPForm = ({
   const inputs = useRef([]);
   const [timer, setTimer] = useState(30);
   const [resendDisabled, setResendDisabled] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (timer > 0) {
@@ -40,6 +43,21 @@ const OTPForm = ({
       inputs.current[index + 1].focus();
     }
   };
+
+  console.log("OTP Verification Component Mounted");
+  const handleVerify = async () => {
+  try {
+    const verifiedUser = await onVerify();
+    if (verifiedUser) {
+      console.log("User after verification:", verifiedUser);
+
+      dispatch(setUser(verifiedUser));
+    }
+  } catch (err) {
+    console.error("OTP verification failed", err);
+  }
+};
+
 
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
@@ -72,12 +90,13 @@ const OTPForm = ({
       </div>
 
       <button
-        onClick={onVerify}
-        disabled={loading}
-        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition mb-2"
-      >
-        {loading ? "Verifying..." : "Verify & Continue"}
-      </button>
+  onClick={handleVerify}
+  disabled={loading}
+  className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition mb-2"
+>
+  {loading ? "Verifying..." : "Verify & Continue"}
+</button>
+
 
       <button
         onClick={handleResend}
