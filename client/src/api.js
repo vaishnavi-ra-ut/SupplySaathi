@@ -1,6 +1,6 @@
 import axios from 'axios';
 const api = axios.create({
-  baseURL: 'https://supplysaathi-2.onrender.com',
+  baseURL: 'http://localhost:7777/api',
   withCredentials: true,
 });
 export default api; 

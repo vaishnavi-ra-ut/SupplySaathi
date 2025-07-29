@@ -53,9 +53,9 @@ export default function Clusters() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#fadb8644]">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className=" ">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div>
@@ -90,46 +90,7 @@ export default function Clusters() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Create Cluster Form */}
-        {user.role === "supplier" && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Create New Cluster</h3>
-            <form onSubmit={handleCreate} className="grid md:grid-cols-4 gap-4">
-              <input 
-                name="name" 
-                required 
-                placeholder="Cluster Name" 
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                value={form.name} 
-                onChange={e => setForm(f => ({ ...f, name: e.target.value }))} 
-              />
-              <input 
-                name="city" 
-                required 
-                placeholder="City" 
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                value={form.city} 
-                onChange={e => setForm(f => ({ ...f, city: e.target.value }))} 
-              />
-              <input 
-                name="area" 
-                required 
-                placeholder="Area" 
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                value={form.area} 
-                onChange={e => setForm(f => ({ ...f, area: e.target.value }))} 
-              />
-              <button 
-                type="submit"
-                className="bg-orange-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-orange-700 transition-colors disabled:opacity-50" 
-                disabled={loading}
-              >
-                {loading ? "Creating..." : "Create"}
-              </button>
-            </form>
-            {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
-          </div>
-        )}
+        
 
         {/* Clusters Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -209,8 +170,49 @@ export default function Clusters() {
           </div>
         )}
 
+        {/* Create Cluster Form */}
+        {user.role === "vendor" && (
+          <div className="bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl shadow-lg p-6 mb-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Create New Cluster</h3>
+            <form onSubmit={handleCreate} className="grid md:grid-cols-4 gap-4">
+              <input 
+                name="name" 
+                required 
+                placeholder="Cluster Name" 
+                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white/30 placeholder:text-gray-700" 
+                value={form.name} 
+                onChange={e => setForm(f => ({ ...f, name: e.target.value }))} 
+              />
+              <input 
+                name="city" 
+                required 
+                placeholder="City" 
+                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white/30 placeholder:text-gray-700" 
+                value={form.city} 
+                onChange={e => setForm(f => ({ ...f, city: e.target.value }))} 
+              />
+              <input 
+                name="area" 
+                required 
+                placeholder="Area" 
+                className="border border-gray-300 bg-white/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder:text-gray-700" 
+                value={form.area} 
+                onChange={e => setForm(f => ({ ...f, area: e.target.value }))} 
+              />
+              <button 
+                type="submit"
+                className="bg-white text-orange-600 py-3 px-6 rounded-xl font-semibold hover:bg-orange-600 hover:text-white transition-colors disabled:opacity-50" 
+                disabled={loading}
+              >
+                {loading ? "Creating..." : "Create"}
+              </button>
+            </form>
+            {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+          </div>
+        )}
+
         {/* Call to Action */}
-        <div className="bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-white text-center">
+        {/* <div className="bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-2">Can't find a cluster?</h3>
           <p className="text-orange-100 mb-6">Create your own and invite vendors</p>
           {user.role === "supplier" ? (
@@ -222,8 +224,10 @@ export default function Clusters() {
               Request New Area
             </button>
           )}
-        </div>
+        </div> */}
       </div>
+      
     </div>
+    
   );
 } 

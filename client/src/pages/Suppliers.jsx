@@ -91,14 +91,14 @@ export default function Suppliers() {
     : suppliers.filter(s => s.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#fadb8644]">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center gap-3 mb-4">
-            <Store className="w-8 h-8 text-blue-600" />
+            <Store className="w-10 h-10 text-gray-700" />
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Trusted Suppliers</h1>
+              <h1 className="text-3xl font-bold text-gray-700">Trusted Suppliers</h1>
               <p className="text-gray-600">भरोसेमंद आपूर्तिकर्ता खोजें</p>
             </div>
           </div>
@@ -124,51 +124,7 @@ export default function Suppliers() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Add Supplier Form */}
-        {user.role === "supplier" && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Add New Supplier</h3>
-            <form onSubmit={handleCreate} className="grid md:grid-cols-4 gap-4">
-              <input 
-                name="name" 
-                required 
-                placeholder="Supplier Name" 
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                value={form.name} 
-                onChange={e => setForm(f => ({ ...f, name: e.target.value }))} 
-              />
-              <select 
-                name="category" 
-                required 
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                value={form.category} 
-                onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
-              >
-                <option value="">Select Category</option>
-                {categories.slice(1).map(cat => (
-                  <option key={cat.name} value={cat.name}>{cat.name}</option>
-                ))}
-              </select>
-              <input 
-                name="location" 
-                required 
-                placeholder="Location" 
-                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                value={form.location} 
-                onChange={e => setForm(f => ({ ...f, location: e.target.value }))} 
-              />
-              <button 
-                type="submit"
-                className="bg-orange-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-orange-700 transition-colors disabled:opacity-50" 
-                disabled={loading}
-              >
-                {loading ? "Adding..." : "Add Supplier"}
-              </button>
-            </form>
-            {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
-          </div>
-        )}
-
+       
         {/* Suppliers Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredSuppliers.map((supplier) => (
@@ -249,7 +205,53 @@ export default function Suppliers() {
           </div>
         )}
 
-        {/* Call to Action */}
+         {/* Add Supplier Form */}
+        {user.role === "supplier" && (
+          <div className="bg-gradient-to-r from-blue-500 to-purple-600  my-6 h-44  rounded-2xl shadow-lg p-6 mb-8">
+            <h3 className="text-xl font-bold text-white mb-4">Add New Supplier</h3>
+            <form onSubmit={handleCreate} className="grid md:grid-cols-4 gap-4">
+              <input 
+                name="name" 
+                required 
+                placeholder="Supplier Name" 
+                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder:text-white" 
+                value={form.name} 
+                onChange={e => setForm(f => ({ ...f, name: e.target.value }))} 
+              />
+              <select 
+                name="category" 
+                required 
+                className="border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder:text-white" 
+                value={form.category} 
+                onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
+              >
+                <option value="">Select Category</option>
+                {categories.slice(1).map(cat => (
+                  <option key={cat.name} value={cat.name}>{cat.name}</option>
+                ))}
+              </select>
+              <input 
+                name="location" 
+                required 
+                placeholder="Location" 
+                className="border border-gray-100  rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder:text-white" 
+                value={form.location} 
+                onChange={e => setForm(f => ({ ...f, location: e.target.value }))} 
+              />
+              <button 
+                type="submit"
+                className="bg-white text-blue-600 py-3 px-6 rounded-xl font-semibold hover:bg-orange-700 transition-colors disabled:opacity-50" 
+                disabled={loading}
+              >
+                {loading ? "Adding..." : "Add Supplier"}
+              </button>
+            </form>
+            {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+          </div>
+        )}
+
+
+        {/* Call to Action
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white text-center mt-8">
           <h3 className="text-2xl font-bold mb-2">Know a great supplier?</h3>
           <p className="text-blue-100 mb-6">Help the community by adding trusted suppliers</p>
@@ -257,7 +259,7 @@ export default function Suppliers() {
             <Users className="w-5 h-5" />
             Add Supplier
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

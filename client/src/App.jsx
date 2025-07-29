@@ -6,6 +6,9 @@ import Clusters from "./pages/Clusters";
 import Suppliers from "./pages/Suppliers";
 import Navbar from "./pages/Navbar";
 import { useSelector } from "react-redux";
+import './index.css';
+import Footer from "./pages/Footer";
+
 export default function App() {
   const user = useSelector((s) => s.user.user);
   return (
@@ -18,6 +21,7 @@ export default function App() {
         <Route path="/suppliers" element={user ? <Suppliers /> : <Navigate to="/" />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }
