@@ -11,7 +11,7 @@ const supplierRoutes = require('./routes/supplierRoutes');
 
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: ['https://supply-saathi-tawny.vercel.app/'],
   credentials: true
 }));
 app.use(express.json());
