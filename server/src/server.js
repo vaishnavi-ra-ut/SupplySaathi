@@ -12,7 +12,7 @@ const supplierRoutes = require('./routes/supplierRoutes');
 const app = express();
 
 app.use(cors({
-  origin: ['https://supply-saathi-tawny.vercel.app/'],
+  origin: ['https://supply-saathi-tawny.vercel.app'],
   credentials: true
 }));
 
