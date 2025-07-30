@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 exports.createCluster = async (req, res) => {
   try {
-    if (req.user.role !== 'supplier') return res.status(403).json({ message: 'Only suppliers can create clusters' });
+    if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Only vendors can create clusters' });
     const { name, city, area } = req.body;
     if (!name || !city || !area) return res.status(400).json({ message: 'All fields required' });
     const cluster = await Cluster.create({ name, city, area, createdBy: req.user.id, members: [req.user.id] });
