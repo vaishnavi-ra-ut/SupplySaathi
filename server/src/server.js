@@ -11,12 +11,13 @@ const supplierRoutes = require('./routes/supplierRoutes');
 
 const app = express();
 
-app.set("trust proxy", 1); 
-
 app.use(cors({
   origin: ['https://supply-saathi-tawny.vercel.app/'],
   credentials: true
 }));
+
+app.set("trust proxy", 1); 
+
 app.use(express.json());
 app.use(cookieParser());
 
